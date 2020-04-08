@@ -7,20 +7,17 @@ function shapes(pix)
 
     xx = linspace(1-pix/2,pix/2,pix);
     [X,Y] = meshgrid(xx,xx);
-    size(xx)
 
     [in,on] = inpolygon(X,Y,x(k),y(k));
 
     a = cat(1,X(in),X(on));
     b = cat(1,Y(in),Y(on));
 
-    img = zeros(pix);
+    img = zeros(pix,pix,3);
     for i = 1:length(X(in))
-        img(a(i)+.5*pix,b(i)+.5*pix) = 255;
+        img(a(i)+.5*pix,b(i)+.5*pix,:) = 255;
     end
     figure(1)
-    
-    
     radius = 10;
     img   = imdilate(img, strel('disk', radius));
     imshow(img)
