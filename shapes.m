@@ -18,8 +18,8 @@ function shapes(pix)
         img(a(i)+.5*pix,b(i)+.5*pix,:) = 255;
     end
     figure(1)
-    radius = 10;
-    img   = imdilate(img, strel('disk', radius));
+    radius = 15;
+    img = imdilate(img, strel('disk', radius));
     imshow(img)
     
     
