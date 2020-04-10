@@ -20,6 +20,7 @@ function shapes(pix)
         img(a(i)+.5*pix,b(i)+.5*pix) = 1;
     end 
     
+    img = imdilate(img, strel('disk',15));
     %% Take edges
     
     gr = linspace(-.1,0,8);
