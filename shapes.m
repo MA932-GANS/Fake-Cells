@@ -3,7 +3,7 @@ function shapes(num,purpose)
 % num - number of files to save from code
 % purpose - what is the file to be used for? 'train' or 'test'
 
-for i = 1:num
+for n = 1:num
     pix = 256; %Number of pixels
     sd = pix/10; %Standard Deviation
 
@@ -43,7 +43,7 @@ for i = 1:num
     
     file = cat(2,r,g);
 
-    imwrite(file,['2D-figs/' purpose '/Fake-Cell' (num2str(num)) '.png'])
+    imwrite(file,['2D-figs/' purpose '/Fake-Cell' (num2str(n)) '.png'])
     
 end
     

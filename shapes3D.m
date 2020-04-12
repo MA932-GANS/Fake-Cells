@@ -26,19 +26,21 @@ function shapes3D()
     vlm = zeros(pix,pix,pix/4);
     for i = 1:length(t)
         if ~isnan(t(i))
+            points1(i,3)
             vlm(points1(i,1),points1(i,2),(points1(i,3)-1)/4) = 1;
         end
     end
     
     cell = zeros(pix,pix,3,pix/4);
     for i = 1:pix/4
-        cell(:,:,:,i) = Texture(cat(3,vlm(:,:,i),vlm(:,:,i),vlm(:,:,i)),pix);
+        tmp = imdilate(imerode(vlm(:,:,i), strel('disk',15)), strel('disk',15));
+        cell(:,:,:,i) = Texture(cat(3,tmp,tmp,tmp),pix);
     end
     
     
     figure(2)
-    for i = 20:31
-        subplot(3,4,i-19)
+    for i = 16:27
+        subplot(3,4,i-15)
         imshow(cell(:,:,:,i))
     end
     

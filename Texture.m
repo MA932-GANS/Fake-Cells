@@ -23,7 +23,7 @@ function cell = Texture(img,pix)
     for i = 1:pix
         for j = 1:pix
             if  edges1(i,j) > 0 && tmp1(i,j) > 0.4
-                cell(i,j,1) = 1.2*tmp1(i,j)-0.1*rand(1);
+                cell(i,j,1) = 1.5*tmp1(i,j)-0.1*rand(1);
             elseif edges1(i,j) > 0 && tmp1(i,j) < 0.4
                 cell(i,j,1) = .5*tmp1(i,j)-0.1*rand(1);
             end
@@ -36,14 +36,14 @@ function cell = Texture(img,pix)
     for i = 1:pix
         for j = 1:pix
             if inner(i,j) > 0
-                cell(i,j,2) = 2*tmp2(i,j) + 0.1*rand(1);
+                cell(i,j,2) = 2.5*tmp2(i,j) + 0.2*rand(1);
             end
         end
     end
     
     %% Dilate the channels to smooth texture
     cell(:,:,1) = imdilate(cell(:,:,1),strel('disk', 1));
-    cell(:,:,2) = imdilate(cell(:,:,2),strel('disk', 1));
+    cell(:,:,2) = imdilate(cell(:,:,2),strel('disk', 2));
 
 end
 
