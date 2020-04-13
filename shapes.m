@@ -28,18 +28,27 @@ for n = 1:num
     %% Creat binary mask
 
     img = zeros(pix);
-    for i = 1:length(X(in))
+    for i = 1:length(a)
         img(a(i)+.5*pix,b(i)+.5*pix) = 1;
     end 
 
     %% Texture
-    img = imdilate(img, strel('disk',10)); %Dilate the image, more cell-like
+    img = imdilate(img, strel('disk',15)); %Dilate the image, more cell-like
     cell = Texture(img,pix); %Add the protein textures
 
     %% Save to File for pix2pix
     
     r = cat(3,cell(:,:,1),zeros(pix),zeros(pix));
     g = cat(3,zeros(pix),cell(:,:,2),zeros(pix)); 
+%     rgb = r+g;
+%     
+%     figure(1)
+%     subplot(1,3,1)
+%     imshow(r)
+%     subplot(1,3,2)
+%     imshow(g)
+%     subplot(1,3,3)
+%     imshow(rgb)
     
     file = cat(2,r,g);
 

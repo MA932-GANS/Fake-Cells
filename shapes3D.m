@@ -26,7 +26,6 @@ function shapes3D()
     vlm = zeros(pix,pix,pix/4);
     for i = 1:length(t)
         if ~isnan(t(i))
-            points1(i,3)
             vlm(points1(i,1),points1(i,2),(points1(i,3)-1)/4) = 1;
         end
     end
@@ -34,7 +33,7 @@ function shapes3D()
     cell = zeros(pix,pix,3,pix/4);
     for i = 1:pix/4
         tmp = imdilate(imerode(vlm(:,:,i), strel('disk',15)), strel('disk',15));
-        cell(:,:,:,i) = Texture(cat(3,tmp,tmp,tmp),pix);
+        cell(:,:,:,i) = Texture(tmp,pix);
     end
     
     
