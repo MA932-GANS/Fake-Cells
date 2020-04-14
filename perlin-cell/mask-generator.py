@@ -21,7 +21,7 @@ def normalize(arr):
 
 def np_to_pil(arr):
     # convert numpy array to a Pillow image
-    arr = arr.astype(int) * (2**16 - 1)
+    arr = arr.astype(np.uint8) * (2**8 - 1)
     return Image.fromarray(arr)
 
 def generate_mask():
