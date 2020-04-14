@@ -11,7 +11,7 @@ def sphere(n):
     for x in range(0, 64):
         for y in range(0, n):
             for z in range(0, n):
-                c[x, y, z] = -3 * math.sqrt(math.pow(32 - 4*x, 2) + math.pow(n/2 - y, 2) + math.pow(n/2 - z, 2))/(n/2)
+                c[x, y, z] = -2 * math.sqrt(math.pow(1.5*(32 - x), 2) + math.pow(n/2 - y, 2) + math.pow(n/2 - z, 2))/(n/2)
     return c
 
 def normalize(arr):
@@ -34,5 +34,4 @@ if __name__ == '__main__':
     images = [Image.fromarray(layer) for layer in mask]
     for i in range(0, len(images)):
         images[i].save('test_layer_' + str(i) + '.png')
-
 
