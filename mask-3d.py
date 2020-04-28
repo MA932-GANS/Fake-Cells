@@ -4,12 +4,6 @@ import math
 import matplotlib.pyplot as plt
 # Requires https://github.com/pvigier/perlin-numpy/blob/master/perlin3d.py
 from perlin3d import generate_perlin_noise_3d
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--num_of_outputs", type=int, default=1)
-a = parser.parse_args()
-
 
 def sphere(n):
     # Generate a 'cone' image to force a mask to be like an 'island', in the centre
@@ -17,7 +11,7 @@ def sphere(n):
     for x in range(0, 64):
         for y in range(0, n):
             for z in range(0, n):
-                c[x, y, z] = -3 * math.sqrt(math.pow(32 - 4*x, 2) + math.pow(n/2 - y, 2) + math.pow(n/2 - z, 2))/(n/2)
+                c[x, y, z] = -2 * math.sqrt(math.pow(1.5*(32 - x), 2) + math.pow(n/2 - y, 2) + math.pow(n/2 - z, 2))/(n/2)
     return c
 
 def normalize(arr):
@@ -36,11 +30,8 @@ def generate_cell():
 
 if __name__ == '__main__':
     from PIL import Image
-    outputs = a.num_of_outputs
-    for i in range(1,outputs+1):
-        mask = generate_cell()
-        images = [Image.fromarray(layer) for layer in mask]
-        for j in range(0, len(images)):
-            images[j].save('3D-figs/binary-masks/mask' + str(i) + '_layer_' + str(j) + '.png')
-
+    mask = generate_cell()
+    images = [Image.fromarray(layer) for layer in mask]
+    for i in range(0, len(images)):
+        images[i].save('test_layer_' + str(i) + '.png')
 

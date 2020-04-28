@@ -5,11 +5,6 @@ import cv2
 from PIL import Image
 # Requires https://github.com/pvigier/perlin-numpy/blob/master/perlin2d.py
 from perlin2d import generate_perlin_noise_2d
-import argparse
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--num_of_outputs", type=int, default=1)
-a = parser.parse_args()
 
 def cone(n):
     # Generate a 'cone' image to force a mask to be like an 'island', in the centre
@@ -50,10 +45,7 @@ def generate_mask():
 
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
-    outputs = a.num_of_outputs
-    for i in range(1,outputs+1):
-        
-        r = generate_mask()
-        im = np_to_pil(r)
-        im.save('2D-figs/binary-masks/mask%d.png'%(i))
-        plt.imshow(im, cmap='gray')
+    r = generate_mask()
+    im = np_to_pil(r)
+    im.save('test.png')
+    plt.imshow(im, cmap='gray')
